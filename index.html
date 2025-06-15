@@ -6,6 +6,9 @@
     <title>M.T.R.E. Giardinaggio - Servizi di Giardinaggio e Lavori Artigianali a Biasca | Valle di Leventina</title>
     <meta name="description" content="Professionista di giardinaggio, pittura e lavori artigianali a Biasca. Servizi di qualità in Valle di Leventina e Riviera. Potature, sfalcio, pittura interni ed esterni, muratura leggera.">
     <meta name="keywords" content="giardiniere Biasca, giardinaggio Valle di Leventina, pittura Biasca, lavori artigianali Biasca, muratura leggera Ticino">
+    
+    <!-- Favicon con emoji foglia -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍃</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -122,8 +125,8 @@
     <!-- Hero Section -->
     <section id="home" class="min-h-screen pt-20 bg-gradient-to-br from-primary-50 via-white to-primary-100 relative overflow-hidden">
         <!-- Decorative elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-primary-200 rounded-full opacity-30 animate-pulse"></div>
-        <div class="absolute bottom-20 right-10 w-32 h-32 bg-primary-300 rounded-full opacity-20 animate-pulse delay-1000"></div>
+        <div class="absolute top-20 left-10 text-6xl opacity-60 animate-pulse">🍃</div>
+        <div class="absolute bottom-20 right-10 text-8xl opacity-40 animate-pulse delay-1000">🌿</div>
         
         <div class="container mx-auto px-4 py-20 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -191,6 +194,19 @@
     <section id="chi-sono" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center">
+                <!-- Logo personale -->
+                <div class="flex justify-center mb-12">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 rounded-full opacity-20 group-hover:opacity-30 transition-opacity blur-lg"></div>
+                        <div class="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-white rounded-full shadow-xl border-4 border-primary-100 overflow-hidden group-hover:shadow-2xl group-hover:scale-105 transition-all duration-300">
+                            <img src="img/logoema.webp" alt="Emanuele - M.T.R.E. Giardinaggio" 
+                                 class="w-full h-full object-cover object-center">
+                        </div>
+                        <!-- Decorative ring -->
+                        <div class="absolute -inset-2 border-2 border-primary-200 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"></div>
+                    </div>
+                </div>
+                
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Chi Sono</h2>
                 
                 <div class="space-y-6 text-lg text-gray-600 leading-relaxed mb-16">
@@ -430,7 +446,7 @@
 
                 <div class="bg-gradient-to-br from-gray-50 to-primary-50 p-8 rounded-2xl">
                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Richiedi Informazioni</h3>
-                    <form id="contactForm" class="space-y-6">
+                    <form id="contactForm" action="https://formspree.io/f/xrbpyagy" method="POST" class="space-y-6">
                         <div>
                             <label for="nome" class="block text-sm font-semibold text-gray-700 mb-2">Nome *</label>
                             <input type="text" id="nome" name="nome" required 
@@ -469,11 +485,23 @@
                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"></textarea>
                         </div>
                         
-                        <button type="submit" 
-                                class="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors flex items-center justify-center space-x-3">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Invia Richiesta</span>
-                        </button>
+                        <!-- Campo nascosto per Formspree -->
+                        <input type="hidden" name="_subject" value="Richiesta informazioni - M.T.R.E. Giardinaggio">
+                        <input type="hidden" name="_next" value="#contatti">
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button type="submit" 
+                                    class="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors flex items-center justify-center space-x-3">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Invia Email</span>
+                            </button>
+                            
+                            <button type="button" id="whatsappBtn"
+                                    class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors flex items-center justify-center space-x-3">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -499,10 +527,10 @@
                 <div>
                     <h4 class="font-semibold text-lg mb-4">Servizi</h4>
                     <ul class="space-y-2 text-gray-300 text-sm">
-                        <li class="hover:text-white transition-colors cursor-pointer">Giardinaggio Biasca</li>
-                        <li class="hover:text-white transition-colors cursor-pointer">Pittura Valle di Leventina</li>
-                        <li class="hover:text-white transition-colors cursor-pointer">Muratura Ticino</li>
-                        <li class="hover:text-white transition-colors cursor-pointer">Manutenzione Riviera</li>
+                        <li class="hover:text-white transition-colors cursor-pointer">Giardinaggio Professionale</li>
+                        <li class="hover:text-white transition-colors cursor-pointer">Pittura Interni & Esterni</li>
+                        <li class="hover:text-white transition-colors cursor-pointer">Muratura & Lavori Artigianali</li>
+                        <li class="hover:text-white transition-colors cursor-pointer">Manutenzione Generale</li>
                     </ul>
                 </div>
                 
@@ -568,17 +596,36 @@
                 });
             });
 
-            // Contact form submission
+            // Contact form submission to Formspree
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
                     
+                    // Mostra loading
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Invio in corso...';
+                    submitBtn.disabled = true;
+                    
+                    // Lascia che il form venga inviato normalmente a Formspree
+                    // Il reset e feedback avverranno dopo il redirect
+                });
+            }
+
+            // WhatsApp button functionality
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            if (whatsappBtn) {
+                whatsappBtn.addEventListener('click', function() {
                     const nome = document.getElementById('nome').value;
                     const telefono = document.getElementById('telefono').value;
                     const email = document.getElementById('email').value;
                     const servizio = document.getElementById('servizio').value;
                     const messaggio = document.getElementById('messaggio').value;
+                    
+                    if (!nome || !telefono || !messaggio) {
+                        alert('Compila almeno i campi obbligatori (Nome, Telefono, Messaggio) prima di inviare su WhatsApp.');
+                        return;
+                    }
                     
                     const whatsappMessage = `Ciao! Sono ${nome}.%0A%0A` +
                         `Telefono: ${telefono}%0A` +
