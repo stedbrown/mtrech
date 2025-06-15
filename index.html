@@ -71,13 +71,34 @@
             position: absolute;
             font-size: 1.5rem;
             opacity: 0.7;
-            animation-timing-function: ease-in-out;
+            animation-timing-function: linear;
             animation-iteration-count: infinite;
+            will-change: transform, opacity;
+            transform: translate3d(0, 0, 0); /* Attiva l'accelerazione hardware */
         }
         
-        @keyframes fall {
+        /* Animazione ottimizzata per mobile */
+        @keyframes fallMobile {
             0% {
-                transform: translateY(-100vh) rotateZ(0deg);
+                transform: translate3d(0, -100vh, 0) rotateZ(0deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.6;
+            }
+            95% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translate3d(0, 100vh, 0) rotateZ(180deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Animazione completa per desktop */
+        @keyframes fallDesktop {
+            0% {
+                transform: translate3d(0, -100vh, 0) rotateZ(0deg);
                 opacity: 0;
             }
             10% {
@@ -87,12 +108,21 @@
                 opacity: 0.7;
             }
             100% {
-                transform: translateY(100vh) rotateZ(360deg);
+                transform: translate3d(0, 100vh, 0) rotateZ(360deg);
                 opacity: 0;
             }
         }
         
-        @keyframes sway {
+        @keyframes swayMobile {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+        
+        @keyframes swayDesktop {
             0%, 100% {
                 transform: translateX(0);
             }
@@ -104,10 +134,24 @@
             }
         }
         
-        /* Different leaf sizes for mobile and desktop */
+        /* Ottimizzazioni specifiche per mobile */
         @media (max-width: 768px) {
             .leaf {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                animation-name: fallMobile;
+                animation-timing-function: ease-out;
+            }
+            
+            .falling-leaves {
+                transform: translateZ(0); /* Forza layer di compositing */
+            }
+        }
+        
+        /* Versione completa per desktop */
+        @media (min-width: 769px) {
+            .leaf {
+                font-size: 1.6rem;
+                animation-name: fallDesktop;
             }
         }
         
@@ -638,15 +682,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Falling Leaves Animation
+            // Falling Leaves Animation - Ottimizzato per mobile
             function createFallingLeaves() {
                 const leavesContainer = document.getElementById('fallingLeaves');
-                const leafEmojis = ['🍃', '🌿', '🍂', '🌱', '🍀'];
-                const numLeaves = window.innerWidth < 768 ? 8 : 15; // Meno foglie su mobile
+                const leafEmojis = window.innerWidth < 768 ? ['🍃', '🌿'] : ['🍃', '🌿', '🍂', '🌱', '🍀'];
+                const isMobile = window.innerWidth < 768;
+                const numLeaves = isMobile ? 4 : 12; // Ancora meno foglie su mobile
                 
-                // Pulisci foglie vecchie per evitare accumulo
-                if (leavesContainer.children.length > 30) {
-                    while (leavesContainer.children.length > 15) {
+                // Pulisci foglie vecchie
+                if (leavesContainer.children.length > (isMobile ? 8 : 20)) {
+                    while (leavesContainer.children.length > (isMobile ? 4 : 10)) {
                         leavesContainer.removeChild(leavesContainer.firstChild);
                     }
                 }
@@ -659,37 +704,42 @@
                     // Posizione orizzontale random
                     leaf.style.left = Math.random() * 100 + '%';
                     
-                    // Durata animazione random (8-15 secondi)
-                    const duration = 8 + Math.random() * 7;
+                    // Durata più veloce su mobile per fluidità
+                    const duration = isMobile ? 6 + Math.random() * 4 : 8 + Math.random() * 7;
                     leaf.style.animationDuration = duration + 's';
                     
-                    // Delay random per scaglionare le foglie
-                    const delay = Math.random() * 10;
+                    // Delay ridotto su mobile
+                    const delay = Math.random() * (isMobile ? 5 : 10);
                     leaf.style.animationDelay = delay + 's';
                     
-                    // Animazione principale di caduta
-                    leaf.style.animationName = 'fall';
-                    
-                    // Aggiungi oscillazione orizzontale random
-                    const swayDuration = 2 + Math.random() * 3;
-                    leaf.style.setProperty('--sway-duration', swayDuration + 's');
-                    
-                    // Auto-rimozione dopo l'animazione
+                    // Auto-rimozione
                     setTimeout(() => {
                         if (leaf.parentElement) {
                             leaf.parentElement.removeChild(leaf);
                         }
-                    }, (duration + delay) * 1000 + 2000);
+                    }, (duration + delay) * 1000 + 1000);
                     
-                    // Combinazione di animazioni
-                    leaf.addEventListener('animationstart', function() {
-                        // Aggiungi oscillazione dopo l'inizio della caduta
-                        setTimeout(() => {
-                            if (leaf.parentElement) {
-                                leaf.style.animation += `, sway ${swayDuration}s ease-in-out infinite`;
-                            }
-                        }, 1000);
-                    });
+                    // Solo su desktop aggiungiamo l'oscillazione complessa
+                    if (!isMobile) {
+                        const swayDuration = 3 + Math.random() * 2;
+                        leaf.addEventListener('animationstart', function() {
+                            setTimeout(() => {
+                                if (leaf.parentElement) {
+                                    leaf.style.animation += `, swayDesktop ${swayDuration}s ease-in-out infinite`;
+                                }
+                            }, 800);
+                        });
+                    } else {
+                        // Su mobile, oscillazione semplice
+                        const swayDuration = 4 + Math.random() * 2;
+                        leaf.addEventListener('animationstart', function() {
+                            setTimeout(() => {
+                                if (leaf.parentElement) {
+                                    leaf.style.animation += `, swayMobile ${swayDuration}s ease-in-out infinite`;
+                                }
+                            }, 500);
+                        });
+                    }
                     
                     leavesContainer.appendChild(leaf);
                 }
@@ -698,8 +748,9 @@
             // Avvia l'animazione delle foglie
             createFallingLeaves();
             
-            // Ricrea le foglie periodicamente per effetto continuo
-            setInterval(createFallingLeaves, 12000);
+            // Intervallo più lungo su mobile per ridurre il carico
+            const interval = window.innerWidth < 768 ? 15000 : 10000;
+            setInterval(createFallingLeaves, interval);
             
             // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
