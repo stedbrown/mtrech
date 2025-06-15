@@ -55,6 +55,67 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { font-family: 'Inter', sans-serif; }
+        
+        /* Falling Leaves Animation */
+        .falling-leaves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .leaf {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotateZ(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes sway {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(10px);
+            }
+            75% {
+                transform: translateX(-10px);
+            }
+        }
+        
+        /* Different leaf sizes for mobile and desktop */
+        @media (max-width: 768px) {
+            .leaf {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .leaf {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
   <body class="bg-gray-50">
@@ -124,9 +185,8 @@
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen pt-20 bg-gradient-to-br from-primary-50 via-white to-primary-100 relative overflow-hidden">
-        <!-- Decorative elements -->
-        <div class="absolute top-20 left-10 text-6xl opacity-60 animate-pulse">🍃</div>
-        <div class="absolute bottom-20 right-10 text-8xl opacity-40 animate-pulse delay-1000">🌿</div>
+        <!-- Falling Leaves Animation -->
+        <div class="falling-leaves" id="fallingLeaves"></div>
         
         <div class="container mx-auto px-4 py-20 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -578,6 +638,69 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Falling Leaves Animation
+            function createFallingLeaves() {
+                const leavesContainer = document.getElementById('fallingLeaves');
+                const leafEmojis = ['🍃', '🌿', '🍂', '🌱', '🍀'];
+                const numLeaves = window.innerWidth < 768 ? 8 : 15; // Meno foglie su mobile
+                
+                // Pulisci foglie vecchie per evitare accumulo
+                if (leavesContainer.children.length > 30) {
+                    while (leavesContainer.children.length > 15) {
+                        leavesContainer.removeChild(leavesContainer.firstChild);
+                    }
+                }
+                
+                for (let i = 0; i < numLeaves; i++) {
+                    const leaf = document.createElement('div');
+                    leaf.className = 'leaf';
+                    leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+                    
+                    // Posizione orizzontale random
+                    leaf.style.left = Math.random() * 100 + '%';
+                    
+                    // Durata animazione random (8-15 secondi)
+                    const duration = 8 + Math.random() * 7;
+                    leaf.style.animationDuration = duration + 's';
+                    
+                    // Delay random per scaglionare le foglie
+                    const delay = Math.random() * 10;
+                    leaf.style.animationDelay = delay + 's';
+                    
+                    // Animazione principale di caduta
+                    leaf.style.animationName = 'fall';
+                    
+                    // Aggiungi oscillazione orizzontale random
+                    const swayDuration = 2 + Math.random() * 3;
+                    leaf.style.setProperty('--sway-duration', swayDuration + 's');
+                    
+                    // Auto-rimozione dopo l'animazione
+                    setTimeout(() => {
+                        if (leaf.parentElement) {
+                            leaf.parentElement.removeChild(leaf);
+                        }
+                    }, (duration + delay) * 1000 + 2000);
+                    
+                    // Combinazione di animazioni
+                    leaf.addEventListener('animationstart', function() {
+                        // Aggiungi oscillazione dopo l'inizio della caduta
+                        setTimeout(() => {
+                            if (leaf.parentElement) {
+                                leaf.style.animation += `, sway ${swayDuration}s ease-in-out infinite`;
+                            }
+                        }, 1000);
+                    });
+                    
+                    leavesContainer.appendChild(leaf);
+                }
+            }
+            
+            // Avvia l'animazione delle foglie
+            createFallingLeaves();
+            
+            // Ricrea le foglie periodicamente per effetto continuo
+            setInterval(createFallingLeaves, 12000);
+            
             // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
