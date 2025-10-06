@@ -6,9 +6,45 @@
     <title>M.T.R.E. Giardinaggio - Servizi di Giardinaggio e Lavori Artigianali a Biasca | Valle di Leventina</title>
     <meta name="description" content="Professionista di giardinaggio, pittura e lavori artigianali a Biasca. Servizi di qualità in Valle di Leventina e Riviera. Potature, sfalcio, pittura interni ed esterni, muratura leggera.">
     <meta name="keywords" content="giardiniere Biasca, giardinaggio Valle di Leventina, pittura Biasca, lavori artigianali Biasca, muratura leggera Ticino">
+    <meta name="author" content="M.T.R.E. Giardinaggio">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="it">
+    <meta name="geo.region" content="CH-TI">
+    <meta name="geo.placename" content="Biasca">
+    <meta name="geo.position" content="46.3567;8.9703">
+    <meta name="ICBM" content="46.3567, 8.9703">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mtre-giardinaggio.ch/">
+    <meta property="og:title" content="M.T.R.E. Giardinaggio - Servizi di Giardinaggio e Lavori Artigianali a Biasca">
+    <meta property="og:description" content="Professionista di giardinaggio, pittura e lavori artigianali a Biasca. Servizi di qualità in Valle di Leventina e Riviera.">
+    <meta property="og:image" content="https://mtre-giardinaggio.ch/img/mtre.webp">
+    <meta property="og:site_name" content="M.T.R.E. Giardinaggio">
+    <meta property="og:locale" content="it_CH">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mtre-giardinaggio.ch/">
+    <meta property="twitter:title" content="M.T.R.E. Giardinaggio - Servizi di Giardinaggio e Lavori Artigianali a Biasca">
+    <meta property="twitter:description" content="Professionista di giardinaggio, pittura e lavori artigianali a Biasca. Servizi di qualità in Valle di Leventina e Riviera.">
+    <meta property="twitter:image" content="https://mtre-giardinaggio.ch/img/mtre.webp">
     
     <!-- Favicon con emoji foglia -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍃</text></svg>">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    <link rel="preload" href="img/mtre.webp" as="image">
+    <link rel="preload" href="img/logoema.webp" as="image">
+    <link rel="preload" href="img/logo.PNG" as="image">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//formspree.io">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -53,6 +89,88 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "M.T.R.E. Giardinaggio",
+        "description": "Servizi professionali di giardinaggio, pittura e lavori artigianali a Biasca, Valle di Leventina e Riviera",
+        "url": "https://mtre-giardinaggio.ch",
+        "telephone": "+41767426736",
+        "email": "emanuele.novara77@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Via Croce 2",
+            "addressLocality": "Biasca",
+            "postalCode": "6710",
+            "addressCountry": "CH"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "46.3567",
+            "longitude": "8.9703"
+        },
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Biasca"
+            },
+            {
+                "@type": "AdministrativeArea",
+                "name": "Valle di Leventina"
+            },
+            {
+                "@type": "AdministrativeArea", 
+                "name": "Riviera"
+            }
+        ],
+        "serviceType": [
+            "Giardinaggio",
+            "Pittura",
+            "Muratura",
+            "Lavori Artigianali",
+            "Manutenzione"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servizi di Giardinaggio e Lavori Artigianali",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Giardinaggio Professionale",
+                        "description": "Potature, sfalcio, manutenzione prati, piantumazioni"
+                    }
+                },
+                {
+                    "@type": "Offer", 
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Pittura Interni ed Esterni",
+                        "description": "Pittura residenziale, verniciatura, trattamento superfici"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service", 
+                        "name": "Muratura e Lavori Artigianali",
+                        "description": "Costruzioni leggere, riparazioni murarie, sistemazioni"
+                    }
+                }
+            ]
+        },
+        "sameAs": [
+            "https://www.instagram.com/mtregiardiniere/",
+            "https://www.facebook.com/mtre.giardiniere"
+        ],
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "priceRange": "$$"
+    }
+    </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
         
@@ -168,7 +286,7 @@
         <nav class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <img src="img/logo.PNG" alt="M.T.R.E. Giardinaggio Logo" class="h-12 w-auto">
+                    <img src="img/logo.PNG" alt="M.T.R.E. Giardinaggio Logo" class="h-12 w-auto" loading="eager" width="48" height="48">
                     <span class="text-2xl font-bold text-primary-700">M.T.R.E.</span>
                 </div>
                 
@@ -287,7 +405,8 @@
                     <div class="relative group">
                         <div class="absolute -inset-4 bg-gradient-to-r from-primary-500 to-primary-700 rounded-2xl opacity-20 group-hover:opacity-30 transition-opacity blur-lg"></div>
                         <img src="img/mtre.webp" alt="Professionista giardiniere al lavoro a Biasca" 
-                             class="relative w-full max-w-md rounded-2xl shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                             class="relative w-full max-w-md rounded-2xl shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                             loading="eager" width="400" height="300">
                     </div>
                 </div>
             </div>
@@ -304,7 +423,8 @@
                         <div class="absolute -inset-4 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 rounded-full opacity-20 group-hover:opacity-30 transition-opacity blur-lg"></div>
                         <div class="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-white rounded-full shadow-xl border-4 border-primary-100 overflow-hidden group-hover:shadow-2xl group-hover:scale-105 transition-all duration-300">
                             <img src="img/logoema.webp" alt="Emanuele - M.T.R.E. Giardinaggio" 
-                                 class="w-full h-full object-cover object-center">
+                                 class="w-full h-full object-cover object-center"
+                                 loading="lazy" width="200" height="200">
                         </div>
                         <!-- Decorative ring -->
                         <div class="absolute -inset-2 border-2 border-primary-200 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"></div>
@@ -619,7 +739,7 @@
                 <div class="space-y-4">
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 bg-primary-600 rounded-lg p-2 flex items-center justify-center">
-                            <img src="img/logo.PNG" alt="M.T.R.E. Giardinaggio Logo" class="w-full h-full object-contain">
+                            <img src="img/logo.PNG" alt="M.T.R.E. Giardinaggio Logo" class="w-full h-full object-contain" loading="lazy" width="40" height="40">
                         </div>
                         <span class="text-xl font-bold text-white">M.T.R.E.</span>
                     </div>
