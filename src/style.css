@@ -799,19 +799,21 @@ behold-widget {
 
 .value-number {
   position: absolute;
-  top: -10px;
+  top: -20px;
   right: -10px;
   font-size: 8rem;
   font-weight: 800;
-  color: rgba(6, 78, 59, 0.08);
-  font-family: var(--font-heading);
+  color: var(--primary);
+  opacity: 0.12;
   line-height: 1;
+  z-index: 0;
+  transition: all 0.5s ease;
   pointer-events: none;
-  transition: color 0.5s ease;
 }
 
 .value-card:hover .value-number {
-  color: rgba(6, 78, 59, 0.15);
+  opacity: 0.22;
+  transform: scale(1.1) rotate(-5deg);
 }
 
 .value-icon-wrapper {
@@ -1294,6 +1296,12 @@ behold-widget {
     box-shadow: var(--shadow);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(20px);
+    z-index: 1001;
+  }
+
+  /* Fix for section jump offset due to sticky header */
+  section {
+    scroll-margin-top: 80px;
   }
 
   .nav-links.active {
@@ -1335,5 +1343,24 @@ behold-widget {
   .bento-large,
   .card-painting {
     grid-column: span 1;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .insta-widget-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .about-highlights {
+    grid-template-columns: 1fr;
   }
 }
