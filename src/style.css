@@ -29,15 +29,17 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: var(--font-body);
   color: var(--text-main);
   background-color: var(--bg-light);
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 h1,
@@ -52,7 +54,13 @@ h4 {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
 }
 
 /* Glass Navigation Refined */
@@ -245,10 +253,11 @@ h4 {
   z-index: 999;
   display: flex;
   flex-direction: column;
-  padding: 8rem 2rem 2rem;
+  padding: 6rem 1.5rem 2rem;
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s ease;
+  overflow-y: auto;
 }
 
 .mobile-overlay.active {
@@ -1079,6 +1088,16 @@ section {
   color: var(--white);
 }
 
+@media (max-width: 768px) {
+  .glass-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 2rem;
+    border-radius: 20px;
+  }
+}
+
 /* Service Areas Section */
 .service-areas {
   background-color: var(--bg-light);
@@ -1163,6 +1182,20 @@ section {
   gap: 2rem;
   /* Ensure a minimum height so when replaced by success msg, it doesn't collapse */
   min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    gap: 1.25rem;
+    min-height: auto;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.875rem 1rem;
+    font-size: 16px;
+    /* Prevents zoom on iOS */
+  }
 }
 
 .form-success {
@@ -1333,6 +1366,22 @@ section {
   text-align: center;
   color: var(--text-muted);
   font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+  }
 }
 
 /* Animations */
