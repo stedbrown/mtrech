@@ -1358,7 +1358,9 @@ section {
   .glass-card {
     grid-template-columns: 1fr;
     padding: 2rem;
-    gap: 3rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .nav-links {
