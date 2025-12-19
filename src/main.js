@@ -51,6 +51,8 @@ const setupScrollReveal = () => {
     ...document.querySelectorAll('.about-highlights'),
     ...document.querySelectorAll('.signature'),
     ...document.querySelectorAll('.areas-grid'),
+    ...document.querySelectorAll('.insta-widget-container'),
+    ...document.querySelectorAll('.social-wall'),
     ...document.querySelectorAll('.value-card'),
     ...document.querySelectorAll('.bento-item'),
     ...document.querySelectorAll('.section-header'),

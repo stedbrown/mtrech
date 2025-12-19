@@ -279,6 +279,24 @@
             </div>
         </section>
 
+        <!-- Instagram Social Wall -->
+        <section id="social" class="social-wall">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Social Wall</h2>
+                    <p>Segui i nostri progetti quotidiani su Instagram</p>
+                </div>
+
+                <div class="insta-widget-container reveal">
+                    <behold-widget feed-id="O1YtRs25MUMrjP064PLv"></behold-widget>
+                </div>
+
+                <div class="social-footer">
+                    <a href="https://www.instagram.com/mtregiardiniere/" target="_blank"
+                        class="insta-link">@mtregiardiniere</a>
+                </div>
+            </div>
+        </section>
 
         <!-- Contact Section -->
         <section id="contatti" class="contact">
@@ -366,6 +384,16 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+    </script>
+
+    <!-- Behold.so Widget Script -->
+    <script>
+        (() => {
+            const d = document, s = d.createElement("script");
+            s.type = "module";
+            s.src = "https://w.behold.so/widget.js";
+            d.head.append(s);
+        })();
     </script>
 </body>
 
